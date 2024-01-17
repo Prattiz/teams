@@ -1,6 +1,30 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
+    "strict": true,
+    "baseUrl": "./",
+    "paths": {
+      "@assets/*":[
+        "./src/assets/*"
+      ],
+      "@theme/*":[
+        "./src/theme/*"
+      ],
+      "@screens/*":[
+        "./src/screens/*"
+      ],
+      "@utils/*":[
+        "./src/utils/*"
+      ],
+      "@routes/*":[
+        "./src/routes/*"
+      ],
+      "@components/*":[
+        "./src/components/*"
+      ],
+      "@storage/*":[
+        "./src/storage/*"
+      ],
+    }
   }
 }
