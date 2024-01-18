@@ -7,9 +7,6 @@
       "@assets/*":[
         "./src/assets/*"
       ],
-      "@theme/*":[
-        "./src/theme/*"
-      ],
       "@screens/*":[
         "./src/screens/*"
       ],

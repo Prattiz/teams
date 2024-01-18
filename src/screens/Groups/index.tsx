@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Container, Title } from "./styles"
 
 export function Groups() {
   return (
-    <View>
-      <Text>Hello world</Text>
-    </View>
+    <Container>
+      <Title>Hello world</Title>
+    </Container>
   );
 }
