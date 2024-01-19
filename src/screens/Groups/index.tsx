@@ -1,11 +1,12 @@
 import { Header } from "@components/Header";
 import { Container, Title } from "./styles"
+import { HighLights } from "@components/HighLights";
 
 export function Groups() {
   return (
     <Container>
       <Header/>
-      <Title>Hello world</Title>
+      <HighLights title="Teams" subtitle="Play with your team"/>
     </Container>
   );
 }
