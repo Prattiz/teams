@@ -6,12 +6,20 @@ import { IconButton } from "@components/IconButton";
 import { Filter } from "@components/Filter";
 import { FlatList } from "react-native";
 import { useState } from "react";
+import { PlayerCard } from "./PlayerCard";
+import { EmptyList } from "@components/EmptyList";
+import { Button } from "@components/Button";
 
 
 export function ClassGroup(){
 
     const [ selectTeam, setSelectTeam ] = useState('TEAM A');
-    const [ numberPlayers, setNumberPlayers ] = useState([])
+    const [ players, setPlayers ] = useState(['player 1']);
+
+    function handleRemovePlayer(){
+
+    }
+
     return(
         <Container>
             <Header showBackButton/>
@@ -35,8 +43,32 @@ export function ClassGroup(){
                         />
                     )}   
                 />
-                <Players> {numberPlayers.length} </Players>
+                <Players> {players.length} </Players>
             </HeaderList>
+            
+            <FlatList
+                data={players}
+                keyExtractor={item => item}
+                renderItem={({item}) => (
+                    <PlayerCard
+                        name={item}
+                        onRemove={handleRemovePlayer}
+                    />
+                )}
+
+                showsVerticalScrollIndicator={false}
+
+                contentContainerStyle={[{paddingBottom: 100}, players.length === 0 && { flex: 1 }]}
+
+                ListEmptyComponent={() => (
+                    <EmptyList message="Add your players..."/>
+                )}
+            />
+
+            <Button
+                text="Remove Class"
+                type="secondary"
+            />
             
         </Container>
     )
