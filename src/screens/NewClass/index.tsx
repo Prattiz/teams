@@ -1,7 +1,8 @@
 import { Button } from '@components/Button';
-import { Container, Content, Icon } from './styled';
+import { Container, Content, Icon } from './styles';
 import { Header } from '@components/Header';
 import { HighLights } from '@components/HighLights';
+import { Input } from '@components/Input';
 
 export function NewTeam(){
     return(
@@ -15,8 +16,10 @@ export function NewTeam(){
                 subtitle='Create a team to add new people'
                 />
 
-                <Button text='Create'/>
+                <Input placeholder='Class name'/>
+                
             </Content>
+            <Button text='Create'/>
         </Container>
     )
 }

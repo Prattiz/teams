@@ -12,6 +12,8 @@ export const Content = styled.View`
 
     flex: 1;
     justify-content: center;
+
+    
 `;
 
 export const Icon = styled(UsersThree).attrs(({theme}) => ({
