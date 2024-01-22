@@ -6,6 +6,7 @@ import { Loading } from '@components/Loading';
 
 import { Groups } from '@screens/Groups';
 import { NewTeam } from '@screens/NewClass';
+import { ClassGroup } from '@screens/ClassGroup';
 
 
 export default function App() {
@@ -19,7 +20,7 @@ export default function App() {
       backgroundColor='transparent'
       translucent
       />
-      {fontsLoaded? <NewTeam/>: <Loading/>}
+      {fontsLoaded? <ClassGroup/>: <Loading/>}
     </ThemeProvider>
   );
 }
