@@ -1,4 +1,4 @@
-import { Container, Menssage } from './styled';
+import { Container, Message } from './styled';
 
 type Props = {
     message: string,
@@ -8,7 +8,7 @@ type Props = {
 export function EmptyList({ message }: Props){
     return(
         <Container>
-            <Menssage>{ message }</Menssage>
+            <Message>{ message }</Message>
         </Container>
     )
 }
