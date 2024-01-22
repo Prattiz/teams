@@ -2,9 +2,11 @@ import { Header } from "@components/Header";
 import { Container } from "./styles"
 import { HighLights } from "@components/HighLights";
 import { Card } from "./Card";
+import { EmptyList } from "@components/EmptyList";
+import { Button } from "@components/Button";
+
 import { useState } from "react";
 import { FlatList } from "react-native";
-import { EmptyList } from "@components/EmptyList";
 
 export function Groups() {
 
@@ -17,19 +19,23 @@ export function Groups() {
 
       
           <FlatList
-          data={groups}
-          keyExtractor={item => item}
+            data={groups}
+            keyExtractor={item => item}
 
-          renderItem={({item}) => (
-            <Card 
-              title={item}
-            />
-          )}
+            renderItem={({item}) => (
+              <Card 
+                title={item}
+              />
+            )}
 
-          contentContainerStyle={groups.length === 0 && { flex: 1 } }
-          ListEmptyComponent={() => <EmptyList message="Sem turmas cadastradas..."/>}
+            contentContainerStyle={groups.length === 0 && { flex: 1 } }
+            ListEmptyComponent={() => <EmptyList message="No registered teams..."/>}
+          />
+
+        <Button 
+        text="Create new class"
+
         />
-
     </Container>
   );
 }
