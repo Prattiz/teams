@@ -20,6 +20,10 @@ export function ClassGroup(){
 
     }
 
+    function handleRemoveClass(){
+        
+    }
+
     return(
         <Container>
             <Header showBackButton/>
@@ -68,6 +72,7 @@ export function ClassGroup(){
             <Button
                 text="Remove Class"
                 type="secondary"
+                onPress={handleRemoveClass}
             />
             
         </Container>

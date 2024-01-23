@@ -8,9 +8,17 @@ import { Button } from "@components/Button";
 import { useState } from "react";
 import { FlatList } from "react-native";
 
+import { useNavigation } from "@react-navigation/native";
+
 export function Groups() {
 
   const [ groups, setGroups ] = useState<string[]>([]);
+
+  const navigation = useNavigation();
+
+  function handleNewGroup(){
+    navigation.navigate('create')
+  }
 
   return (
     <Container>
@@ -33,7 +41,8 @@ export function Groups() {
           />
 
         <Button 
-        text="Create new class"
+          text="Create new class"
+          onPress={handleNewGroup}
 
         />
     </Container>
