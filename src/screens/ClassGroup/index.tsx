@@ -9,26 +9,35 @@ import { useState } from "react";
 import { PlayerCard } from "./PlayerCard";
 import { EmptyList } from "@components/EmptyList";
 import { Button } from "@components/Button";
+import { useRoute } from "@react-navigation/native";
 
+
+type RouteParams = {
+    groups: string
+}
 
 export function ClassGroup(){
 
     const [ selectTeam, setSelectTeam ] = useState('TEAM A');
     const [ players, setPlayers ] = useState(['player 1']);
 
+    const route = useRoute();
+    const { groups } = route.params as RouteParams;
+    
+
     function handleRemovePlayer(){
 
     }
 
     function handleRemoveClass(){
-        
+
     }
 
     return(
         <Container>
             <Header showBackButton/>
 
-            <HighLights title="Name Group" subtitle="add your peaple"/>
+            <HighLights title={ groups } subtitle="add your peaple"/>
             <Form>
                 <Input placeholder="Participant's name" autoCorrect={false}/>
                 <IconButton icon="add" type="primary"/>
