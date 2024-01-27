@@ -5,6 +5,9 @@ import { HighLights } from '@components/HighLights';
 import { Input } from '@components/Input';
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
+import { CreateGroup } from '@storage/group/CreateGroupt';
+import { AppError } from '@utils/appError';
+import { Alert } from 'react-native';
 
 export function NewTeam(){
 
@@ -12,9 +15,28 @@ export function NewTeam(){
 
     const navigation = useNavigation();
 
-    function handleCreateClass(){
-        navigation.navigate('class', { groups })
+    async function handleCreateClass(){
+        try {
+
+            if(groups.trim().length === 0){
+                return Alert.alert('New Class', 'Enter the name of the class')
+            }
+
+
+            await CreateGroup(groups);
+
+            navigation.navigate('class', { groups });
+
+        } catch (e){
+
+           if(e instanceof AppError){
+                Alert.alert('New Class', e.message);
+           }else{
+                Alert.alert('New Class', 'An error occurred, try again later...');
+           }
+        }
     }
+
     return(
         <Container>
             <Header showBackButton/>
