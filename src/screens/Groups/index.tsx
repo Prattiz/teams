@@ -29,6 +29,10 @@ export function Groups() {
     }
   }
 
+  function handleOpenGroup(groups: string){
+    navigation.navigate('class', { groups } );
+  }
+
   function handleNewGroup(){
     navigation.navigate('create')
   }
@@ -50,6 +54,7 @@ export function Groups() {
             renderItem={({item}) => (
               <Card 
                 title={item}
+                onPress={() => handleOpenGroup(item)}
               />
             )}
 

@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { GROUP_COLLECTION } from "./StorageConfig";
+import { GROUP_COLLECTION } from "../StorageConfig";
 import { GetAll } from "./GetAll";
 import { AppError } from "@utils/appError";
 
