@@ -15,7 +15,7 @@ import { EmptyList } from "@components/EmptyList";
 import { Button } from "@components/Button";
 
 import { Alert, FlatList, TextInput } from "react-native";
-import { useRoute } from "@react-navigation/native";
+import { useRoute, useNavigation } from "@react-navigation/native";
 
 import { useEffect, useState, useRef } from "react";
 
@@ -25,6 +25,7 @@ import { PlayerStorageDTO } from "@storage/player/PlayerStorageDTO";
 
 import { AppError } from "@utils/appError";
 import { playerRemoveByGroup } from "@storage/player/playerRemoveByGroup";
+import { GroupRemoveByName } from "@storage/group/groupRemoveByName";
 
 
 type RouteParams = {
@@ -39,6 +40,7 @@ export function ClassGroup(){
 
     const route = useRoute();
     const { groups } = route.params as RouteParams;
+    const navigation = useNavigation();
 
     const newPlayerRef = useRef<TextInput>(null);
 
@@ -98,8 +100,29 @@ export function ClassGroup(){
         }
     }
 
-    function handleRemoveClass(){
+    async function groupRemove(){
+        try {
+            
+            await GroupRemoveByName(groups);
 
+            navigation.navigate('groups');
+            
+        } catch (error) {
+            Alert.alert('Remove Group', 'It was not possible to remove this group')
+            console.error(error)
+        }
+    }
+
+    async function handleRemoveClass(){
+        Alert.alert(
+            'Remove?'
+            ,
+            'Do you want to remove this group?',
+            [
+                { text: 'No', style: 'cancel' },
+                { text: 'Yes', onPress: () => groupRemove() }
+            ]
+            )
     }
 
     useEffect(() => {
