@@ -24,6 +24,7 @@ import { playersGetByGroupAndTeam } from "@storage/player/playerGetByGroup&Team"
 import { PlayerStorageDTO } from "@storage/player/PlayerStorageDTO";
 
 import { AppError } from "@utils/appError";
+import { playerRemoveByGroup } from "@storage/player/playerRemoveByGroup";
 
 
 type RouteParams = {
@@ -85,8 +86,16 @@ export function ClassGroup(){
 
     }
 
-    function handleRemovePlayer(){
+    async function handleRemovePlayer(playerName: string){
+        try {
+            await playerRemoveByGroup(playerName, groups); 
 
+            fetchPlayersByTeam()
+
+        } catch (error) {
+            Alert.alert('Remove Player', "It was not possible to remove this person")
+            console.error(error)
+        }
     }
 
     function handleRemoveClass(){
@@ -144,7 +153,7 @@ export function ClassGroup(){
                 renderItem={({item}) => (
                     <PlayerCard
                         name={item.name}
-                        onRemove={handleRemovePlayer}
+                        onRemove={() => handleRemovePlayer(item.name)}
                     />
                 )}
 
