@@ -1,20 +1,29 @@
+import 
+{ 
+    Container, Form, 
+    HeaderList, Players 
+} from "./styles";
+
+import { PlayerCard } from "./PlayerCard";
+
 import { Header } from "@components/Header";
-import { Container, Form, HeaderList, Players } from "./styles";
 import { HighLights } from "@components/HighLights";
 import { Input } from "@components/Input";
 import { IconButton } from "@components/IconButton";
 import { Filter } from "@components/Filter";
-import { Alert, FlatList } from "react-native";
-import { useEffect, useState } from "react";
-import { PlayerCard } from "./PlayerCard";
 import { EmptyList } from "@components/EmptyList";
 import { Button } from "@components/Button";
+
+import { Alert, FlatList, TextInput } from "react-native";
 import { useRoute } from "@react-navigation/native";
-import { AppError } from "@utils/appError";
+
+import { useEffect, useState, useRef } from "react";
+
 import { AddPlayer } from "@storage/player/Addplayer";
-import { PlayersGetByGroup } from "@storage/player/PLayersGetByGroup";
 import { playersGetByGroupAndTeam } from "@storage/player/playerGetByGroup&Team";
 import { PlayerStorageDTO } from "@storage/player/PlayerStorageDTO";
+
+import { AppError } from "@utils/appError";
 
 
 type RouteParams = {
@@ -29,6 +38,8 @@ export function ClassGroup(){
 
     const route = useRoute();
     const { groups } = route.params as RouteParams;
+
+    const newPlayerRef = useRef<TextInput>(null);
 
 
     async function fetchPlayersByTeam() {
@@ -55,6 +66,11 @@ export function ClassGroup(){
         try {
 
             await AddPlayer(NewPlayer, groups);
+
+            newPlayerRef.current?.blur
+
+            setNewPLayerName('');
+
             fetchPlayersByTeam()
             
         } catch (error) {
@@ -91,7 +107,11 @@ export function ClassGroup(){
                 <Input 
                     placeholder="Participant's name" 
                     autoCorrect={false} 
+                    inputRef={newPlayerRef}
                     onChangeText={setNewPLayerName}
+                    value={newPLayerName}
+                    onSubmitEditing={handleAddPlayer}
+                    returnKeyType="done"
                 />
 
                 <IconButton 
